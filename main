@@ -1,0 +1,102 @@
+#include <iostream>
+#include "Student.h"
+#include "BST.h"
+using namespace std;
+int showMenu(){
+
+}
+
+int main() {
+    int options;
+    char exit;
+    bool flag = true;
+    while (flag)
+    {
+        cout<<"First Menu - Main menu\n"
+              "Choose Data Structure:\n"
+              "1. BST\n"
+              "2. AVL\n"
+              "3. Min Heap\n"
+              "4. Max Heap\n"
+              "5. Exit Program\n"
+              "Enter number of option :";
+        cin>>options;
+        BST AllStudents;
+        string SName ;
+        int SId;
+        float SGpa;
+        if (options == 1){
+            while (flag){
+                cout<<"(Second Menu - choice 1 BST)\n"
+                      "Choose one of the following options:\n"
+                      "1. Add student \n"
+                      "2. Remove student\n"
+                      "3. Search student\n"
+                      "4. Print All (sorted by id)\n"
+                      "5. Return to main menu\n"
+                      "Enter number of option :";
+                cin>>options;
+                if (options == 1){
+                    cout<<"Plz Enter your Name :";
+                    cin>>SName;
+
+                    cout<<"Plz Enter your ID :";
+                    cin>>SId;
+
+                    cout<<"Plz Enter your GPA :";
+                    cin>>SGpa;
+
+                    Student S1(SName , SId , SGpa);
+                    BST bst1;
+                    bst1.Add(S1);
+                    AllStudents.Add(S1);
+                    cout<<"The student is added.\n";
+                }
+
+                else if (options == 2){
+                    cout<<"Plz Enter your ID :";
+                    cin>>SId;
+
+                    bool check = AllStudents.Search(SId);
+                    if (check ) {
+                        AllStudents.Remove(AllStudents.Root, SId);
+                        cout << "Student is deleted.\n";
+                    }
+                }
+
+                else if (options == 3){
+                    cout<<"Plz Enter your ID :";
+                    cin>>SId;
+                    AllStudents.Search(SId);
+                }
+
+                else if (options == 4){
+                    AllStudents.printAll(AllStudents.Root);
+                }
+
+                else if (options == 5){
+                    break;
+                }
+
+                cout<<"to Select another option Press ok , else Press close ..\n";
+                string cont ;
+                cin>>cont;
+                if (cont == "close")
+                    flag = false;
+            }
+        } else if (options == 2){
+
+        } else if (options == 3){
+
+        } else if (options == 4){
+
+        } else if (options == 5){
+            flag = false;
+        }
+        cout<<"Do you wish to return to main menu  ?, (y)es or (n)o? :";
+        cin>>exit;
+        if (exit == 'n')
+            flag = false;
+    }
+    return 0;
+}
